@@ -1,6 +1,8 @@
-import { Field, Input, Flex, Box, Heading, Button, Text } from '@chakra-ui/react';
+import { Field, Input, Flex, Box, Heading, Button, Text, Icon, useToggle } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { NavLink } from 'react-router-dom';
+import { useTogglePassword } from './Authworker';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 interface FormValues {
   firstName: string;
@@ -10,6 +12,7 @@ interface FormValues {
 }
 
 const SignupPage = () => {
+  const { isPasswordVisible, togglePassword } = useTogglePassword();
   const {
     register,
     handleSubmit,
@@ -76,13 +79,19 @@ const SignupPage = () => {
               <Field.Label fontSize="md">Password</Field.Label>
               <Field.ErrorText>{errors.password?.message}</Field.ErrorText>
             </Flex>
-            <Input
-              {...register('password', {
-                required: 'This field is required',
-                minLength: { value: 4, message: 'Password must be alteast 4 characters' },
-              })}
-              placeholder="Enter your email"
-            />
+            <Flex w="full" position="relative">
+              <Input
+                {...register('password', {
+                  required: 'This field is required',
+                  minLength: { value: 4, message: 'Password must be alteast 4 characters' },
+                })}
+                placeholder="Enter your email"
+                type={isPasswordVisible ? 'text' : 'password'}
+              />
+              <Icon onClick={togglePassword} position="absolute" top="3" right="2">
+                {isPasswordVisible ? <FaEyeSlash /> : <FaEye />}
+              </Icon>
+            </Flex>
           </Field.Root>
           <Flex justify="end" w="full" mb="2">
             <Text>Already have an account?</Text>

@@ -1,6 +1,8 @@
 import { useForm } from 'react-hook-form';
-import { Field, Input, Button, Flex, Box, Heading, Text } from '@chakra-ui/react';
+import { Field, Input, Button, Flex, Box, Heading, Text, Icon, useToggle } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { useTogglePassword } from '../auth/Authworker';
 
 interface FormValues {
   email: string;
@@ -8,6 +10,8 @@ interface FormValues {
 }
 
 const LoginPage = () => {
+  const { isPasswordVisible, togglePassword } = useTogglePassword();
+
   const {
     register,
     handleSubmit,
@@ -50,14 +54,20 @@ const LoginPage = () => {
               <Field.Label fontSize="md">Password</Field.Label>
               <Field.ErrorText>{errors.password?.message}</Field.ErrorText>
             </Flex>
-            <Input
-              {...register('password', {
-                required: 'This Field is required',
-                minLength: { value: 4, message: 'This field must be alteast 4 characters' },
-              })}
-              placeholder="Please enter your password"
-              fontSize="md"
-            />
+            <Flex position="relative" w="full">
+              <Input
+                {...register('password', {
+                  required: 'This Field is required',
+                  minLength: { value: 4, message: 'This field must be alteast 4 characters' },
+                })}
+                placeholder="Please enter your password"
+                fontSize="md"
+                type={isPasswordVisible ? 'text' : 'password'}
+              />
+              <Icon position="absolute" top="3" right="3" onClick={togglePassword}>
+                {isPasswordVisible ? <FaEyeSlash /> : <FaEye />}
+              </Icon>
+            </Flex>
           </Field.Root>
           <Box textAlign="right" mt="2">
             <Text textDecoration="underline">
