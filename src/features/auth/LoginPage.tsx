@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
-import { Field, Input, Button, Flex, Box, Heading } from '@chakra-ui/react';
+import { Field, Input, Button, Flex, Box, Heading, Text } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 
 interface FormValues {
   email: string;
@@ -58,8 +59,13 @@ const LoginPage = () => {
               fontSize="md"
             />
           </Field.Root>
-          <Button type="submit" w="full" mt="4">
-            Submit
+          <Box textAlign="right" mt="2">
+            <Text textDecoration="underline">
+              <Link to="/signup">Create Account</Link>
+            </Text>
+          </Box>
+          <Button type="submit" w="full" mt="2">
+            Login
           </Button>
         </form>
       </Box>
