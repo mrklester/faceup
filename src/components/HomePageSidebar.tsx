@@ -1,5 +1,5 @@
 import { Flex, Heading, Icon, Stack, Text } from '@chakra-ui/react';
-import { FaUser, FaUserFriends } from 'react-icons/fa';
+import { FaUserFriends } from 'react-icons/fa';
 import { CgProfile } from 'react-icons/cg';
 import type { IconType } from 'react-icons';
 
@@ -28,6 +28,7 @@ const HomePageSidebar = () => {
         {navItem.map((item) => {
           return (
             <Flex
+              key={item.to}
               textAlign="left"
               _hover={{ background: 'gray.100' }}
               p="2"
