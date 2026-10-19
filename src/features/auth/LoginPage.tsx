@@ -20,7 +20,7 @@ const LoginPage = () => {
   const onSubmit = handleSubmit((data) => console.log(data));
 
   return (
-    <Flex h="100vh" justify="center" align="center" p="4">
+    <Flex h="100dvh" justify="center" align="center" p="4">
       <Box
         border="2px solid"
         borderColor="gray.400"

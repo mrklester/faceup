@@ -21,7 +21,8 @@ const SignupPage = () => {
 
   const onSubmit = handleSubmit((data) => console.log(data));
   return (
-    <Flex justify="center" align="center" h="100vh">
+    <Flex justify="center" align="center" h="100dvh">
+      {' '}
       <Box
         w={{ base: 'full', md: '1/3' }}
         border="2px solid"
